@@ -1,0 +1,73 @@
+name: Dependency Check
+
+on:
+  schedule:
+    # 毎週月曜日の午前10時（JST）に実行
+    - cron: "0 1 * * 1"
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+  workflow_dispatch: # 手動実行を許可
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+    name: Check for Outdated Dependencies
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for outdated dependencies
+        id: outdated-check
+        run: |
+          echo "🔍 Checking for outdated dependencies..."
+
+          # npm outdatedを実行（失敗を許可）
+          if npm outdated --json > outdated.json 2>/dev/null; then
+            echo "✅ All dependencies are up to date"
+            echo "has_outdated=false" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️ Found outdated dependencies:"
+            npm outdated || true
+            echo "has_outdated=true" >> $GITHUB_OUTPUT
+            # JSONファイルから詳細情報を抽出
+            if [ -f outdated.json ]; then
+              echo "📋 Detailed outdated information:"
+              cat outdated.json | jq -r 'keys[] as $k | "\($k): \(.[$k].current) → \(.[$k].latest)"' 2>/dev/null || echo "Could not parse outdated information"
+            fi
+          fi
+
+      - name: Fail if outdated dependencies exist
+        if: steps.outdated-check.outputs.has_outdated == 'true'
+        run: |
+          echo "❌ Outdated dependencies detected!"
+          echo ""
+          echo "💡 Please update dependencies before merging using one of these methods:"
+          echo ""
+          echo "🔧 Method 1: Standard npm update (semver-safe)"
+          echo "   npm outdated"
+          echo "   npm update"
+          echo ""
+          echo "🚀 Method 2: npm-check-updates (ncu) - Recommended"
+          echo ""
+          echo "   # Check what will be updated"
+          echo "   ncu"
+          echo "   # Interactive update (choose which packages to update)"
+          echo "   ncu -i"
+          echo "   # Update package.json and install"
+          echo "   ncu -u && npm install"
+          exit 1
