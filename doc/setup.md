@@ -22,5 +22,8 @@ ssh -T git@github.com
 ```sh
 cd ~
 git clone git@github.com:zucky2021/rand-str-gen.git
+cd rand-str-gen
+cp .env.example .env
+npm ci
 npm run dev
 ```

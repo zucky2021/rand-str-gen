@@ -1,6 +1,10 @@
 import { RefObject, createRef } from "react";
 import { GenFormData } from "../utils/interface";
 
+/**
+ * Reducerで使用するアクション型の定義
+ * 各アクションは特定の状態更新処理を表す
+ */
 type Action =
   | { type: "UPDATE_FORM_DATA"; payload: Partial<GenFormData> }
   | { type: "TOGGLE_HTML_TAGS" }
@@ -15,6 +19,10 @@ type Action =
   | { type: "UPDATE_EDITABLE_TEXT"; payload: { index: number; value: string } }
   | { type: "SET_IS_GEN_TEXT"; payload: boolean };
 
+/**
+ * アプリケーションの初期状態
+ * フォームデータとUI状態、アコーディオンの高さ管理、生成されたテキストなどを含む
+ */
 const initialState: GenFormData & {
   showHtmlTags: boolean;
   selectedHtmlTags: string[];
@@ -29,7 +37,6 @@ const initialState: GenFormData & {
   spCharsAccordionHeight: number;
   pictographsAccordionRef?: RefObject<HTMLDivElement | null>;
   pictographAccordionHeight: number;
-  isValidFormDate: boolean;
   editableTexts: string[];
   isGenText: boolean;
 } = {
@@ -57,11 +64,18 @@ const initialState: GenFormData & {
   spCharsAccordionHeight: 0,
   pictographsAccordionRef: createRef<HTMLDivElement>(),
   pictographAccordionHeight: 0,
-  isValidFormDate: false,
   editableTexts: [],
   isGenText: false,
 };
 
+/**
+ * Reducer関数 - 状態管理の中心となる関数
+ * アクションタイプに応じて状態を更新する
+ *
+ * @param state - 現在の状態
+ * @param action - 実行するアクション
+ * @returns 更新された新しい状態
+ */
 const reducer = (
   state: typeof initialState,
   action: Action,

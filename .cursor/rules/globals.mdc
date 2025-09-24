@@ -1,6 +1,6 @@
 ---
 description: Apply this rule to the entire repository
-globs: 
+globs: "**/*"
 alwaysApply: true
 ---
 

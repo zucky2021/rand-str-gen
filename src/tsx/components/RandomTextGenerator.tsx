@@ -1,4 +1,3 @@
-// src/components/FormSettings.tsx
 import React, { useEffect, useReducer } from "react";
 import {
   getHiraganaChars,
@@ -15,9 +14,17 @@ import "../../scss/RandomTextGenerator.scss";
 import { initialState, reducer } from "../utils/reducer.ts";
 import { delay } from "../utils/func.ts";
 
+/**
+ * ランダム文字列生成のメインコンポーネント
+ * @returns React.FC
+ */
 const RandomTextGenerator: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  /**
+   * フォーム入力の変更を処理する関数
+   * @param e - 入力イベント
+   */
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = e.target;
     switch (name) {
@@ -156,6 +163,10 @@ const RandomTextGenerator: React.FC = () => {
     state.numOfStrings,
   ]);
 
+  /**
+   * ランダム文字列を生成
+   * @async
+   */
   const generateRandomTexts = async () => {
     const {
       charLength,
