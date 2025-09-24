@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "coderabbit.coderabbit-vscode",
+    "dbaeumer.vscode-eslint",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "davidanson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid",
+    "christian-kohler.npm-intellisense",
+    "esbenp.prettier-vscode",
+    "jgclark.vscode-todo-highlight"
+  ]
+}

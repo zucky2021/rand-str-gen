@@ -1,0 +1,6 @@
+echo "[husky] Running pre-commit..."
+if ! npx lint-staged; then
+  echo "[husky] ❌ Pre-commit checks failed. Please fix the issues and try again."
+  exit 1
+fi
+echo "[husky] ✅ Pre-commit checks passed successfully!"
