@@ -12,6 +12,10 @@ export const getAlphabetChars = () => {
   return [...lowercase, ...uppercase];
 };
 
+export const getNumericChars = () => {
+  return [...Array(10)].map((_, i) => String.fromCharCode(i + 0x30));
+};
+
 export const getHtmlTags = (selectedTags: string[]) => {
   return selectedTags;
 };

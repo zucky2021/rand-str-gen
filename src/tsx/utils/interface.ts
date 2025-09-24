@@ -3,6 +3,7 @@ export interface GenFormData {
   hiragana: boolean;
   katakana: boolean;
   alphabet: boolean;
+  numeric: boolean;
   htmlTags: boolean;
   specialChars: boolean;
   pictographs: boolean;
