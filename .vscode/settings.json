@@ -7,5 +7,5 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
-  "cSpell.words": ["coderabbit"]
+  "cSpell.words": ["coderabbit", "VITE"]
 }

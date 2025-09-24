@@ -1,22 +1,24 @@
 @keyframes hop {
   0% {
-    transform: scale(1.0, 1.0) translate(0, 0);
+    transform: scale(1, 1) translate(0, 0);
   }
   15% {
     transform: scale(0.98, 0.9) translate(0, 5px);
   }
   30% {
-    transform: scale(1.02, 1.0) translate(0, 8px);
+    transform: scale(1.02, 1) translate(0, 8px);
   }
-  50% {transform: scale(0.98, 1.05) translate(0, -8px);
+  50% {
+    transform: scale(0.98, 1.05) translate(0, -8px);
   }
   70% {
-    transform: scale(1.0, 0.9) translate(0, 5px);
+    transform: scale(1, 0.9) translate(0, 5px);
   }
   100% {
-    transform: scale(1.0, 1.0) translate(0, 0);
+    transform: scale(1, 1) translate(0, 0);
   }
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
 }
@@ -27,6 +29,14 @@
     margin-top: 1rem;
     font-family: serif;
     text-align: center;
+    span {
+      font-size: 1rem;
+      vertical-align: middle;
+      background-color: #06ffea;
+      padding: 0 0.5rem;
+      border-radius: 0.5rem;
+      margin-right: 0.5rem;
+    }
   }
   &__form {
     width: 90%;
@@ -48,17 +58,19 @@
     }
 
     input[name="charLength"] {
-      margin-left: .3rem;
+      margin-left: 0.3rem;
       width: 5rem;
     }
     input[name="numOfStrings"] {
-      margin-left: .3rem;
+      margin-left: 0.3rem;
       width: 5rem;
     }
   }
   &__accordion {
     &-icon {
-      transition: height 0.2s linear, opacity 0.2s ease-in;
+      transition:
+        height 0.2s linear,
+        opacity 0.2s ease-in;
       overflow: hidden;
       position: relative;
       width: 1.2rem;
@@ -86,7 +98,9 @@
       }
     }
     &-wrap {
-      transition: height 0.2s linear, opacity 0.2s ease-in;
+      transition:
+        height 0.2s linear,
+        opacity 0.2s ease-in;
       overflow: hidden;
       &.open {
         max-height: 100%;
@@ -115,10 +129,10 @@
     font-family: serif;
     display: block;
     font-weight: bold;
-    box-shadow: 0 .2rem 0 #a5a5a5;
-    transition: .4s;
+    box-shadow: 0 0.2rem 0 #a5a5a5;
+    transition: 0.4s;
     &:hover {
-      transform: translateY(.2rem);
+      transform: translateY(0.2rem);
       box-shadow: 0 0 0 #a5a5a5;
     }
     &.clicked {
@@ -129,7 +143,7 @@
     &.disabled {
       cursor: no-drop;
       pointer-events: none;
-      transform: translateY(.2rem);
+      transform: translateY(0.2rem);
       box-shadow: 0 0 0 #a5a5a5;
     }
   }

@@ -227,7 +227,12 @@ const RandomTextGenerator: React.FC = () => {
 
   return (
     <section className="rand-str-gen">
-      <h1>{import.meta.env.VITE_APP_TITLE}</h1>
+      <h1>
+        {import.meta.env.VITE_ENV !== "production" && (
+          <span>{import.meta.env.VITE_ENV}</span>
+        )}
+        ランダム文字列生成
+      </h1>
       <form className="rand-str-gen__form">
         <label className="rand-str-gen__form-label rand-str-gen__form-label-number">
           <div>
