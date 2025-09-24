@@ -10,6 +10,8 @@
     "bierner.markdown-mermaid",
     "christian-kohler.npm-intellisense",
     "esbenp.prettier-vscode",
-    "jgclark.vscode-todo-highlight"
+    "jgclark.vscode-todo-highlight",
+    "alefragnani.bookmarks",
+    "github.vscode-github-actions"
   ]
 }
